@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: leiaqa-website-service
+spec:
+  selector:
+    app: leiaqa-website
+  ports:
+    - protocol: TCP
+      port: 3090
+      targetPort: 3090
+  type: NodePort

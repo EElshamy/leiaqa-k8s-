@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leiaqa-website
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: leiaqa-website
+
+  template:
+    metadata:
+      labels:
+        app: leiaqa-website
+
+    spec:
+      containers:
+      - name: website
+        image: eslamelshamy/leiaqa-website
+        ports:
+          - containerPort: 3090
