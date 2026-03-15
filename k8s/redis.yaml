@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-db  # Change from redis-service to redis-db
+  name: redis-instance # Change to this
 spec:
   selector:
     app: redis

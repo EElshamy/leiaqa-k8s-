@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pg-db  # Change from postgres-service to pg-db
+  name: pg-instance  # Change to this
 spec:
   selector:
     app: postgres

@@ -1,0 +1,43 @@
+# 1. REDIS DEPLOYMENT & SERVICE
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-server
+spec:
+  selector:
+    matchLabels:
+      app: redis-pod
+  template:
+    metadata:
+      labels:
+        app: redis-pod
+    spec:
+      containers:
+      - name: redis
+        image: redis:alpine
+        ports:
+        - containerPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-db-svc
+spec:
+  selector:
+    app: redis-pod
+  ports:
+    - port: 6379
+      targetPort: 6379
+
+---
+# 2. POSTGRES SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-db-svc
+spec:
+  selector:
+    app: postgres # Check: Does your postgres pod have label 'app: postgres'?
+  ports:
+    - port: 5432
+      targetPort: 5432

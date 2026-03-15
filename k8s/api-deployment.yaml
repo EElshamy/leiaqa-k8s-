@@ -21,9 +21,9 @@ spec:
         - name: PORT
           value: "7049"
 
-        # DATABASE
+        # DATABASE - Aligned with Service Name
         - name: DB_HOST
-          value: "pg-db"     # MATCHES NEW SERVICE NAME
+          value: "postgres-db-svc" 
         - name: DB_PORT
           value: "5432"
         - name: DB_USER
@@ -33,9 +33,9 @@ spec:
         - name: DB_NAME
           value: "leiaqa"
 
-        # REDIS
+        # REDIS - Aligned with Service Name
         - name: REDIS_HOST
-          value: "redis-db"   # MATCHES NEW SERVICE NAME
+          value: "redis-db-svc"
         - name: REDIS_PORT
           value: "6379"
         - name: REDIS_DATABASE_INDEX
