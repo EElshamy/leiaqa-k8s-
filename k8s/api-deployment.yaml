@@ -2,22 +2,35 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: leiaqa-api
-
 spec:
   replicas: 2
-
   selector:
     matchLabels:
       app: leiaqa-api
-
   template:
     metadata:
       labels:
         app: leiaqa-api
-
     spec:
       containers:
       - name: api
         image: eslamelshamy/leiaqa-api
         ports:
         - containerPort: 7049
+        env:
+        - name: DB_HOST
+          value: "postgres-service" # Name of your DB service
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_USER
+          value: "leiaqa_user"
+        - name: DB_PASS
+          value: "Z5!MjQ&u6!LmhwLdGI"
+        - name: DB_NAME
+          value: "leiaqa"
+        - name: REDIS_HOST
+          value: "redis-service"    # Name of your Redis service
+        - name: REDIS_PORT
+          value: "6379"
+        - name: JWT_SECRET
+          value: "LK67JSDLGJDHVOGIE7DFG834G855ASG"
