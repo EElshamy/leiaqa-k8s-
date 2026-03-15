@@ -17,9 +17,10 @@ spec:
         image: eslamelshamy/leiaqa-api
         ports:
         - containerPort: 7049
+        # env MUST be at the same level as ports, NOT inside it
         env:
         - name: DB_HOST
-          value: "postgres-service" # Name of your DB service
+          value: "postgres-service"
         - name: DB_PORT
           value: "5432"
         - name: DB_USER
@@ -29,8 +30,12 @@ spec:
         - name: DB_NAME
           value: "leiaqa"
         - name: REDIS_HOST
-          value: "redis-service"    # Name of your Redis service
+          value: "redis-service"
         - name: REDIS_PORT
           value: "6379"
+        - name: REDIS_DATABASE_INDEX
+          value: "1"
         - name: JWT_SECRET
           value: "LK67JSDLGJDHVOGIE7DFG834G855ASG"
+        - name: NODE_ENV
+          value: "development"
