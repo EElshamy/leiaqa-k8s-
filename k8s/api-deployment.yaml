@@ -23,7 +23,7 @@ spec:
         - name: NODE_ENV
           value: "development"
         - name: DB_HOST
-          value: "postgres-db-svc"
+          value: "pg-db-svc"
         - name: DB_PORT
           value: "5432"
         - name: DB_USER
@@ -33,9 +33,31 @@ spec:
         - name: REDIS_HOST
           value: "redis-db-svc"
         - name: REDIS_PORT
-          value: "6379"
+          value: "6379" # Hardcoded here as a string to fix the NaN error
 
-        # SECRETS (Pulled from Kubernetes, not from GitHub)
+        # Firebase
+        - name: FIREBASE_PROJECT_ID
+          valueFrom:
+            secretKeyRef:
+              name: api-secrets
+              key: FIREBASE_PROJECT_ID
+        - name: FIREBASE_CLIENT_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: api-secrets
+              key: FIREBASE_CLIENT_EMAIL
+        - name: FIREBASE_PRIVATE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: api-secrets
+              key: FIREBASE_PRIVATE_KEY
+        - name: FIREBASE_DB_URL
+          valueFrom:
+            secretKeyRef:
+              name: api-secrets
+              key: FIREBASE_DB_URL
+
+        # Other Secrets
         - name: DB_PASS
           valueFrom:
             secretKeyRef:
@@ -46,11 +68,6 @@ spec:
             secretKeyRef:
               name: api-secrets
               key: JWT_SECRET
-        - name: FIREBASE_PRIVATE_KEY
-          valueFrom:
-            secretKeyRef:
-              name: api-secrets
-              key: FIREBASE_PRIVATE_KEY
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
