@@ -1,33 +1,9 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: postgres
-spec:
-  selector:
-    matchLabels:
-      app: postgres
-  template:
-    metadata:
-      labels:
-        app: postgres
-    spec:
-      containers:
-      - name: postgres
-        image: postgres:14
-        env:
-        - name: POSTGRES_USER
-          value: "leiaqa_user"
-        - name: POSTGRES_PASSWORD
-          value: "Z5!MjQ&u6!LmhwLdGI"
-        - name: POSTGRES_DB
-          value: "leiaqa"
----
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-service
+  name: pg-db  # Change from postgres-service to pg-db
 spec:
   selector:
     app: postgres
   ports:
-  - port: 5432
+    - port: 5432
