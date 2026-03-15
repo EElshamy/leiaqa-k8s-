@@ -17,8 +17,12 @@ spec:
         image: eslamelshamy/leiaqa-api:v6
         ports:
         - containerPort: 7049
-        # env MUST be at the same level as ports, NOT inside it
         env:
+        # APP PORT (Forces a number to stop the NaN error)
+        - name: PORT
+          value: "7049"
+
+        # DATABASE
         - name: DB_HOST
           value: "postgres-service"
         - name: DB_PORT
@@ -29,13 +33,25 @@ spec:
           value: "Z5!MjQ&u6!LmhwLdGI"
         - name: DB_NAME
           value: "leiaqa"
+
+        # REDIS
         - name: REDIS_HOST
           value: "redis-service"
         - name: REDIS_PORT
           value: "6379"
         - name: REDIS_DATABASE_INDEX
           value: "1"
+
+        # AUTH & SECURITY
         - name: JWT_SECRET
           value: "LK67JSDLGJDHVOGIE7DFG834G855ASG"
         - name: NODE_ENV
           value: "development"
+
+        # FIREBASE (YOU MUST FILL THESE FROM YOUR OLD .ENV)
+        - name: FIREBASE_PROJECT_ID
+          value: "leiaqa-deb6a"  # <--- CHANGE THIS
+        - name: FIREBASE_PRIVATE_KEY
+          value: "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCxT/AuvKoOZBdn\nrxn04bBNiDxhRUDgPoXhhRCL0EmyGtoa52UAfzr7DHRyHu9mJINd+1aDxuqSNvHT\nn0LrQgGNG212PCsNNXtmTO0a4/CExNZ4HpwoxAvXb+ux0EF0mtQimC7sDLlxPjcT\nbHrrkrR0bLL5ow3vcUiJpydWxtIsDXOkhlGGFJv9Ueu4rJBYquQ20M5tP7jSCvfd\nYaV7PMb5LcEBqv93e3RTJoEM+WjbI1Q0y9JYXwlDqGBzQ+dXLZIf9d2FyT9qEqHM\n2lFfZY0gl65fmiSGsvwzSOUtWmM+UOce8XtmsnSfSvzUu8RkcKmgWNBX5qPlbU4i\n+fluxwXzAgMBAAECggEAOgeP8zPSsggG8uuHIrJUOWOrYyg/ncRIm7CpZCCkZdJM\n7D4ru5hoLK58U7cVIYg0qCbwPwt0TKsHxPsb8xO0n0JJNkdlzZphyu7FMKZF2qXz\nDPfzopHa0ES0Tgr6yRc88x98R8u4SzwR2V0I850dSvciMfovvtwD4e0fPlKuiTTI\nLdsiYnZti/JWyrciWfwIqmgN2M4tGRIPv+KKtagoSH6zBTQvebk+AicXz4o1CP0c\nRi6KTtP0vWk6kT47gcWgwsoKW86DUGpINwj+qu1HLupilM+GzosjaDe7E4jf7SP+\nHKWHLUdCiUR99oqUsMEw+4LUbc4NkVgwZqZ3UBCJ8QKBgQDgZ8XyIyL/J2HUoIQO\nYLUqmAeLJgGvzYExAtcW1hWgzQtId1K5LMlrN54DUG+AAzKSbtNcRn+NAaINiWuR\nEptWrspT8Y0HCQm45rLmJ6wRmFNDrFwj+sl6bDMD3q5/xHjpC/4Bb9AhEH/8A2mw\ndQzT4tN61cNb1287fci7H6hz8QKBgQDKRsqfVIQUcAJtJi7zvKvapAX1Rmsiiftd\nHfxTbi9tWSx5Ac4yIjmuNqfRBXJoUzD8K6nuZ+Cl9l2SuKk2XrhufEpY6eFjndJN\nkNeONrRnFBFWrQjPVFKo7ZT9iahYHDE4Qhzghecb2qrDMaVltShjEqpaVzSvXsHk\nCe+j1q3sIwKBgEf+wzEWOMontmljPjrmp/kMYY8xGGVwxzwULzGyaan3XuFW9wFV\n7yEo7NcfXUZywCzexYzbSVzR4034grw+ffvnhB4+ZwKU0buyuD7DB591gXE6wS0B\n7tYKFKvvK4juXeRW5p1LZDjXdFhEOApW41Cvey3zmwPCMHujtVzjoUXhAoGBAILq\nLlnQqWtQ00ExZVH62n83iWOln9FK3JT3w0d8GNX80PvAX2OzIwHN/e8aR2Gd9iY/\nXEwgjxTaztUXDu1RgKyBZN0HAgknK+VnyRsR7NCJ/G7MrtcBDD6pBbTSU1IzbOes\nYmQuRdWRQNP0Xcfl5623dunhZwfZnEOq6p5vY0FhAoGBAK8ovqgpjKCcYwYNHMo1\nu3tvBkKWEUXBZGa8hnoFQKKz6pvLNX9XueT/Zu5xkBpmh/+0CiL/ydUE3RwK4aKA\nI3gp0AYuxovlqXQ+Luo2jJ4nvE9AUkBjt6cEr1LXq+XIzXkNtyp2RUn8Vlv+6c+f\nhVrIXN2EyDw+4qfce6FwKLt5\n-----END PRIVATE KEY-----\n" # <--- CHANGE THIS
+        - name: FIREBASE_CLIENT_EMAIL
+          value: "firebase-adminsdk-fbsvc@leiaqa-deb6a.iam.gserviceaccount.com"       # <--- CHANGE THIS
